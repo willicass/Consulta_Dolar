@@ -1,6 +1,6 @@
 import smtplib
 import email.message
-from credenciais import login, senha
+from credenciais import login, senha, mail, caminho
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,7 +16,7 @@ def enviar_email():
     msg = email.message.Message()
     msg['Subject'] = f'Cotação do Dolar {ValorDollar[0][0:6]}'
     msg['From'] = login
-    msg['To'] = 'williamcassiano_dosanjos@hotmail.com'
+    msg['To'] = mail
     password = senha
     msg.add_header('Cibtebt-Type', 'text/html')
     msg.set_payload(corpo_email)
@@ -32,7 +32,7 @@ def enviar_email():
 ValorDollar = list()
 
 chrome_options = ChromeOptions()
-driver = webdriver.Chrome('C:\\Users\\willi\\OneDrive\\Área de Trabalho\\Docs\\Programação\\Automacao_Dollar\\chromedriver.exe', 
+driver = webdriver.Chrome(caminho, 
     options=chrome_options)
 sleep(1)
 driver.get('https://economia.uol.com.br/cotacoes/cambio')
